@@ -27,21 +27,21 @@ const Footer = () => {
       icon: (
         <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
+      href: "https://github.com/SharadSaha",
     },
     {
       title: "LinkedIn",
       icon: (
         <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
+      href: "https://www.linkedin.com/in/sharad-saha-0906711b8/",
     },
     {
       title: "Resume",
       icon: (
         <IconBook className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
+      href: "https://drive.google.com/file/d/1s3ajRN-9TuaXWyqoLFZEC9wMZnW8DDLE/view?usp=sharing",
     },
     {
       title: "Twitter",

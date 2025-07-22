@@ -25,7 +25,7 @@ const Skills = () => {
         title="Skills"
         description="My technical skills include React, Redux, TypeScript, Node.js, Express.js, PostgreSQL, CI/CD and more."
       >
-        <div className="antialiased relative overflow-hidden flex flex-wrap items-start px-10 gap-4">
+        <div className="flex flex-wrap max-w-7xl mx-auto gap-4 px-4 md:px-8 lg:px-10">
           <IconBrandReact size={64} />
           <IconBrandRedux size={64} />
           <IconBrandTypescript size={64} />
