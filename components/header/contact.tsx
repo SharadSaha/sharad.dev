@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Label } from "@radix-ui/react-label";
-import { FiSend } from "react-icons/fi";
+import { FiCheckCircle, FiCopy, FiSend } from "react-icons/fi";
 import { Input } from "../form/input";
 import { Modal } from "../form/modal";
 
@@ -41,6 +41,14 @@ const Contact = (props: IContactProps) => {
     email: "",
     message: "",
   });
+  const email = "sahasharad29@gmail.com";
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -48,14 +56,45 @@ const Contact = (props: IContactProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(formData);
+    await fetch("http://localhost:5000/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    }).then(() => {
+      props.onClose();
+      alert("Message Sent");
+    });
   };
 
   return (
     <Modal open setOpen={props.onClose}>
       <div className="flex flex-col items-center justify-center">
-        <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200 py-8 flex gap-2 items-center">
-          Contact Me <FiSend size={20} />
-        </h2>
+        <div className="flex flex-col justify-between items-center py-8 gap-4">
+          <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200 flex gap-2 items-center">
+            Contact Me <FiSend size={20} />
+          </h2>
+
+          <div className="flex gap-4 items-center">
+            <a
+              href={`mailto:${email}`}
+              className="text-sm text-blue-600 dark:text-blue-400 underline hover:no-underline"
+            >
+              {email}
+            </a>
+            <div className="text-white cursor-pointer">
+              {copied ? (
+                <>
+                  <FiCheckCircle size={16} onClick={handleCopy} />
+                </>
+              ) : (
+                <>
+                  <FiCopy size={16} onClick={handleCopy} />
+                </>
+              )}
+            </div>
+          </div>
+        </div>
 
         <form
           className="text-white text-sm p-4 flex flex-col gap-6"
