@@ -22,6 +22,10 @@ export const Modal = ({
     } else {
       document.body.style.overflow = "auto";
     }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [open]);
 
   return (

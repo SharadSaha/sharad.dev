@@ -72,9 +72,8 @@ const Header = () => {
         navItems={navItems}
         onBtnClick={() => setContactFormOpen(true)}
       />
-      <h1 className="text-4xl font-bold">
+      <h1 className="text-4xl font-bold overflow-x-hidden">
         <Spotlight className="top-1/4 left-1/6" fill="hsl(210, 70%, 60%)" />
-        <Spotlight className="top-3/4 left-5/6" fill="hsl(270, 70%, 60%)" />
         <Spotlight className="top-1/2 left-1/3" fill="hsl(320, 70%, 60%)" />
         <HeaderBackground>
           <div className="flex flex-col gap-8">

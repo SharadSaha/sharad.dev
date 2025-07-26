@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Label } from "@radix-ui/react-label";
@@ -35,10 +36,20 @@ interface IContactProps {
 }
 
 const Contact = (props: IContactProps) => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form submitted");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <Modal open setOpen={props.onClose}>
       <div className="flex flex-col items-center justify-center">
@@ -52,23 +63,36 @@ const Contact = (props: IContactProps) => {
         >
           <div className="flex justify-between gap-4">
             <LabelInputContainer>
-              <Label htmlFor="firstname" className="font-light">
-                First name
+              <Label htmlFor="name" className="font-light">
+                Name
               </Label>
-              <Input id="firstname" placeholder="Enter" type="text" />
+              <Input
+                id="name"
+                placeholder="Enter"
+                type="text"
+                onChange={handleChange}
+              />
             </LabelInputContainer>
             <LabelInputContainer>
-              <Label htmlFor="lastname" className="font-light">
-                Last name
+              <Label htmlFor="email" className="font-light">
+                Email
               </Label>
-              <Input id="lastname" placeholder="Enter" type="text" />
+              <Input
+                id="email"
+                placeholder="example@gmail.com"
+                type="email"
+                onChange={handleChange}
+              />
             </LabelInputContainer>
           </div>
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="email" className="font-light">
-              Email Address
-            </Label>
-            <Input id="email" placeholder="example@gmail.com" type="email" />
+            <Label className="font-light">Message</Label>
+            <Input
+              id="message"
+              placeholder="Enter"
+              type="text"
+              onChange={handleChange}
+            />
           </LabelInputContainer>
 
           <button
